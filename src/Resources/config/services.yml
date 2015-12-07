@@ -1,0 +1,13 @@
+services:
+
+    lcn_x_robots_tag:
+        class: Lcn\XRobotsTagBundle\Services\XRobotsTag
+
+    lcn_x_robots_tag.response_listener:
+      class: Lcn\XRobotsTagBundle\EventListeners\ResponseListener
+      private: true
+      arguments:
+        - "@lcn_x_robots_tag"
+        - "@security.access_map"
+      tags:
+          - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

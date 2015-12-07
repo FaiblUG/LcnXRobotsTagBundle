@@ -1,0 +1,36 @@
+sudo: false
+
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
+
+# whitelist
+#branches:
+#  only:
+#    - master
+#    - develop
+
+language: php
+
+matrix:
+  fast_finish: true
+
+php:
+  - 5.5
+  - 5.6
+  - 7
+  - hhvm
+
+before_install:
+  - composer self-update && composer --version
+  - wget https://scrutinizer-ci.com/ocular.phar
+
+before_script:
+  - composer install --no-interaction --no-progress --optimize-autoloader --prefer-dist
+
+script:
+  - vendor/bin/phpunit --coverage-clover=clover.xml
+
+#after_script:
+#  - php ocular.phar code-coverage:upload --access-token=$SCRUTINIZER_TOKEN --format=php-clover clover.xml

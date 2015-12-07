@@ -1,0 +1,38 @@
+{
+  "name" : "locaine/lcn-x-robots-tag-bundle",
+  "description" : "Easily control X-Robots-Tag HTTP Headers",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Jonas Fischer-Maeck",
+    "email" : "info@jonasfischer.net"
+  }],
+  "keywords" : [
+    "Symfony 2", "SEO"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+    "php": ">=5.5",
+    "symfony/framework-bundle": "~2.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.7",
+    "matthiasnoback/symfony-dependency-injection-test": "~0.7"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "Lcn\\XRobotsTagBundle\\" : "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Lcn\\XRobotsTagBundle\\Tests\\": "tests/"
+    }
+  },
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "1.0.0-dev"
+    }
+  }
+}
