@@ -8,4 +8,4 @@ phpunit:
 	vendor/bin/phpunit
 
 phpunit-coverage:
-	vendor/bin/phpunit --coverage-html=build/coverage --coverage-text
+	vendor/bin/phpunit --coverage-text

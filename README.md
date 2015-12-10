@@ -1,6 +1,8 @@
 LcnXRobotsTagBundle
 ==================
 
+[![Build Status](https://travis-ci.org/FaiblUG/LcnXRobotsTagBundle.svg)](https://travis-ci.org/FaiblUG/LcnXRobotsTagBundle)
+
 Easily manage [X-Robots-Tag http header](https://developers.google.com/webmasters/control-crawl-index/docs/robots_meta_tag) (noindex, nofollow) in Symfony2.
 * lets you define a default value for the X-Robots-Tag response header
 * lets you define the value for the X-Robots-Tag response header for requests that require certain user roles
@@ -91,7 +93,9 @@ Calling `setNoindex` or `setNofollow` on the `XRobotsTag` service overrides all 
 
 #### Do not index requests that require certain user roles
 
-If you have user roles and access control rules defined in `app/security.yml` then you can easily tell search engine crawlers not to index those requests: 
+If you have user roles and access control rules defined in `app/security.yml` then you can easily tell search engine crawlers not to index those requests.
+This is useful if your visitors "login" using a token (see [Api Key Authenticator](http://symfony.com/doc/current/cookbook/security/api_key_authentication.html#the-api-key-authenticator)) or when Http Basic Auth user credentials are provided in urls.
+If you are sending 403/401 Status headers or if you are redirecting unauthenticated users to you login page, this might be less useful.
 
 ```yaml
 # app/config.yml
@@ -123,6 +127,8 @@ lcn_x_robots_tag:
             ROLE_ADMIN: { noindex: true, nofollow: true }
             ROLE_EDITOR: { noindex: true, nofollow: true }
 ```
+
+
 
 #### Do not index dev environment
 

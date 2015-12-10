@@ -16,6 +16,11 @@ language: php
 matrix:
   fast_finish: true
 
+env:
+  - SYMFONY_VERSION="2.8.*"
+  - SYMFONY_VERSION="3.0.*"
+  - SYMFONY_VERSION="dev-master"
+
 php:
   - 5.5
   - 5.6
@@ -24,13 +29,10 @@ php:
 
 before_install:
   - composer self-update && composer --version
-  - wget https://scrutinizer-ci.com/ocular.phar
 
 before_script:
   - composer install --no-interaction --no-progress --optimize-autoloader --prefer-dist
+  - composer require symfony/framework-bundle:${SYMFONY_VERSION}
 
 script:
   - vendor/bin/phpunit --coverage-clover=clover.xml
-
-#after_script:
-#  - php ocular.phar code-coverage:upload --access-token=$SCRUTINIZER_TOKEN --format=php-clover clover.xml
